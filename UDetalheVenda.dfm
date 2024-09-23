@@ -38,28 +38,28 @@ object Form2: TForm2
     Caption = 'Recebimentos'
   end
   object GroupBox1: TGroupBox
-    Left = 8
+    Left = 376
     Top = 0
-    Width = 1178
+    Width = 428
     Height = 105
     Caption = 'Datas'
     TabOrder = 0
     object Label1: TLabel
-      Left = 400
+      Left = 72
       Top = 24
       Width = 53
       Height = 13
       Caption = 'Data Inicial'
     end
     object Label2: TLabel
-      Left = 610
+      Left = 250
       Top = 24
       Width = 48
       Height = 13
       Caption = 'Data Final'
     end
     object DateTimeInicial: TDateTimePicker
-      Left = 400
+      Left = 72
       Top = 43
       Width = 121
       Height = 21
@@ -69,7 +69,7 @@ object Form2: TForm2
       TabOrder = 0
     end
     object DateTimeFinal: TDateTimePicker
-      Left = 610
+      Left = 250
       Top = 43
       Width = 127
       Height = 21
@@ -127,7 +127,7 @@ object Form2: TForm2
     Top = 111
     Width = 217
     Height = 34
-    Caption = 'Consultar'
+    Caption = '&Consultar'
     TabOrder = 4
     OnClick = BtnConsultarClick
   end
@@ -181,6 +181,99 @@ object Form2: TForm2
       ParentFont = False
     end
   end
+  object GroupBox5: TGroupBox
+    Left = 17
+    Top = 0
+    Width = 353
+    Height = 151
+    Caption = 'Conex'#227'o com o Banco'
+    TabOrder = 7
+    object Label6: TLabel
+      Left = 16
+      Top = 32
+      Width = 40
+      Height = 13
+      Caption = 'Servidor'
+    end
+    object Label7: TLabel
+      Left = 184
+      Top = 32
+      Width = 26
+      Height = 13
+      Caption = 'Porta'
+    end
+    object Label8: TLabel
+      Left = 16
+      Top = 72
+      Width = 29
+      Height = 13
+      Caption = 'Banco'
+    end
+    object Label9: TLabel
+      Left = 16
+      Top = 112
+      Width = 36
+      Height = 13
+      Caption = 'Usuario'
+    end
+    object Label10: TLabel
+      Left = 173
+      Top = 112
+      Width = 30
+      Height = 13
+      Caption = 'Senha'
+    end
+    object EditServidor: TEdit
+      Left = 62
+      Top = 29
+      Width = 107
+      Height = 21
+      TabOrder = 0
+      Text = 'localhost'
+    end
+    object EditPorta: TEdit
+      Left = 216
+      Top = 29
+      Width = 89
+      Height = 21
+      TabOrder = 1
+      Text = '3050'
+    end
+    object EditLocalBanco: TEdit
+      Left = 62
+      Top = 69
+      Width = 179
+      Height = 21
+      TabOrder = 2
+      Text = 'C:\SysPDV\SYSPDV_SRV.FDB'
+    end
+    object EditUsuarioBanco: TEdit
+      Left = 58
+      Top = 109
+      Width = 95
+      Height = 21
+      TabOrder = 3
+      Text = 'sysdba'
+    end
+    object EditSenhaBanco: TEdit
+      Left = 209
+      Top = 109
+      Width = 113
+      Height = 21
+      PasswordChar = '*'
+      TabOrder = 4
+      Text = 'masterkey'
+    end
+  end
+  object BtnLocalizar: TButton
+    Left = 264
+    Top = 67
+    Width = 75
+    Height = 25
+    Caption = '&Localizar'
+    TabOrder = 8
+    OnClick = BtnLocalizarClick
+  end
   object InterBaseUniProvider1: TInterBaseUniProvider
     Left = 896
     Top = 8
@@ -192,34 +285,50 @@ object Form2: TForm2
   end
   object UniQueryTransacao: TUniQuery
     Connection = UniConnection1
-    Left = 1120
-    Top = 104
+    Left = 216
+    Top = 192
   end
   object DataSourceTransacao: TDataSource
-    Left = 1008
-    Top = 104
+    Left = 112
+    Top = 184
   end
   object DataSourceItens: TDataSource
-    Left = 1008
-    Top = 56
+    Left = 160
+    Top = 376
   end
   object DataSourcePagamentos: TDataSource
-    Left = 1008
-    Top = 8
+    Left = 144
+    Top = 544
   end
   object UniQueryItens: TUniQuery
     Connection = UniConnection1
-    Left = 1120
-    Top = 56
+    Left = 248
+    Top = 384
   end
   object UniQueryRecebimentos: TUniQuery
     Connection = UniConnection1
-    Left = 1120
-    Top = 8
+    Left = 264
+    Top = 544
   end
   object UniQueryTotalSelecionado: TUniQuery
     Connection = UniConnection1
-    Left = 896
-    Top = 112
+    Left = 776
+    Top = 592
+  end
+  object FileOpenDialog1: TFileOpenDialog
+    FavoriteLinks = <>
+    FileTypes = <
+      item
+        DisplayName = ''
+        FileMask = '*.fdb'
+      end
+      item
+        DisplayName = ''
+        FileMask = '*.gdb'
+      end>
+    Options = []
+    OnFileOkClick = FileOpenDialog1FileOkClick
+    Left = 384
+    Top = 120
   end
 end

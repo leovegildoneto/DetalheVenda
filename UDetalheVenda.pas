@@ -46,8 +46,24 @@ type
     LblVendaSelecionada: TLabelEffect;
     LblPeriodoSelecionado: TLabelEffect;
     UniQueryTotalSelecionado: TUniQuery;
+    GroupBox5: TGroupBox;
+    Label6: TLabel;
+    EditServidor: TEdit;
+    Label7: TLabel;
+    EditPorta: TEdit;
+    FileOpenDialog1: TFileOpenDialog;
+    Label8: TLabel;
+    EditLocalBanco: TEdit;
+    BtnLocalizar: TButton;
+    Label9: TLabel;
+    EditUsuarioBanco: TEdit;
+    Label10: TLabel;
+    EditSenhaBanco: TEdit;
     procedure BtnConsultarClick(Sender: TObject);
     procedure DBGridTransacaoCellClick(Column: TColumn);
+    procedure FileOpenDialog1FileOkClick(Sender: TObject;
+      var CanClose: Boolean);
+    procedure BtnLocalizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,9 +87,10 @@ begin
   dataFinal := formatdatetime('dd.MM.yyyy', DateTimeFinal.Date);
 
   //Criando conexão com o banco de dados do server
-  UniConnection1.Database := 'C:\SysPDV\SYSPDV_SRV.FDB';
-  UniConnection1.Username := 'sysdba';
-  UniConnection1.Password := 'masterkey';
+  UniConnection1.Server := EditServidor.Text;
+  UniConnection1.Database := EditLocalBanco.Text;
+  UniConnection1.Username := EditUsuarioBanco.Text;
+  UniConnection1.Password := EditSenhaBanco.Text;
   //Executando a consulta que retorna a capa da venda e preenchendo o datagrid
   UniQueryTransacao.SQL.Text := 'select ' + 't.trnseq as SEQUENCIAL, ' +
     't.cxanum as caixa, ' + 't.trndat as data, ' +
@@ -91,15 +108,21 @@ begin
 end;
 
 //Procedure que captura o valor da primeira coluna da linha selecionada
+procedure TForm2.BtnLocalizarClick(Sender: TObject);
+begin
+FileOpenDialog1.Execute;
+end;
+
 procedure TForm2.DBGridTransacaoCellClick(Column: TColumn);
 begin
 
   //Preenche Grid de Itens
 
   trnSequencial := DBGridTransacao.columns.items[0].field.Text;
-  UniConnection1.Database := 'C:\SysPDV\SYSPDV_SRV.FDB';
-  UniConnection1.Username := 'sysdba';
-  UniConnection1.Password := 'masterkey';
+  UniConnection1.Server := EditServidor.Text;
+  UniConnection1.Database := EditLocalBanco.Text;
+  UniConnection1.Username := EditUsuarioBanco.Text;
+  UniConnection1.Password := EditSenhaBanco.Text;
   UniQueryItens.SQL.Text := 'select ' + 'ite.procod as codigo, ' +
     'pro.prodes as descricao, ' + 'ite.itvqtdvda as quantidade, ' +
     'ite.itvvlruni as unitario, ' + 'ite.itvvlracr as acrescimo, ' +
@@ -133,6 +156,12 @@ begin
   LblVendaSelecionada.Caption := 'R$' + UniQueryTotalSelecionado.FieldByName
     ('total').AsString;
 
+end;
+
+procedure TForm2.FileOpenDialog1FileOkClick(Sender: TObject;
+  var CanClose: Boolean);
+begin
+EditLocalBanco.Text := FileOpenDialog1.FileName;
 end;
 
 end.
