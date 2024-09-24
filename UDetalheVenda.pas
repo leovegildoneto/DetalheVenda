@@ -16,7 +16,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Grids,
   Vcl.DBGrids, Data.DB, DBAccess, Uni, MemDS, UniProvider, InterBaseUniProvider,
-  LblEffct;
+  LblEffct, Vcl.ExtCtrls, JvExExtCtrls, JvExtComponent, JvFooter;
 
 type
   TForm2 = class(TForm)
@@ -59,6 +59,8 @@ type
     EditUsuarioBanco: TEdit;
     Label10: TLabel;
     EditSenhaBanco: TEdit;
+    JvFooter1: TJvFooter;
+    Label11: TLabel;
     procedure BtnConsultarClick(Sender: TObject);
     procedure DBGridTransacaoCellClick(Column: TColumn);
     procedure FileOpenDialog1FileOkClick(Sender: TObject;
@@ -70,6 +72,7 @@ type
     dataInicial: string;
     dataFinal: string;
     trnSequencial: string;
+    vData : TDate;
   end;
 
 var

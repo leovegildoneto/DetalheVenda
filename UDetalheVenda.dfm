@@ -4,7 +4,7 @@ object Form2: TForm2
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Consultar Detalhes de uma Venda'
-  ClientHeight = 680
+  ClientHeight = 693
   ClientWidth = 1204
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -273,6 +273,24 @@ object Form2: TForm2
     Caption = '&Localizar'
     TabOrder = 8
     OnClick = BtnLocalizarClick
+  end
+  object JvFooter1: TJvFooter
+    Left = 0
+    Top = 671
+    Width = 1204
+    Height = 22
+    Align = alBottom
+    object Label11: TLabel
+      Left = 26
+      Top = 0
+      Width = 1135
+      Height = 13
+      Caption = 
+        'Informe a conex'#227'o com o banco em seguida o intervalo de datas da' +
+        ' consulta e clique em Consultar. Ao selecionar uma linha no grid' +
+        ' de Transa'#231#227'o, os detalhes da venda como itens e formas de pagam' +
+        'ento ser'#227'o exibidos nos demais grids.'
+    end
   end
   object InterBaseUniProvider1: TInterBaseUniProvider
     Left = 896
