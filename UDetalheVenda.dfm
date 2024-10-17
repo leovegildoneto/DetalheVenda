@@ -6,7 +6,7 @@ object Form2: TForm2
   Caption = 'Consultar Detalhes de uma Venda'
   ClientHeight = 693
   ClientWidth = 1204
-  Color = clBtnFace
+  Color = clGradientActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -14,34 +14,66 @@ object Form2: TForm2
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label3: TLabel
     Left = 8
     Top = 157
-    Width = 50
-    Height = 13
+    Width = 60
+    Height = 16
     Caption = 'Transa'#231#227'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label4: TLabel
     Left = 8
     Top = 327
-    Width = 25
-    Height = 13
+    Width = 28
+    Height = 16
     Caption = 'Itens'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Label5: TLabel
     Left = 8
     Top = 503
-    Width = 67
-    Height = 13
+    Width = 80
+    Height = 16
     Caption = 'Recebimentos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label12: TLabel
+    Left = 751
+    Top = 327
+    Width = 58
+    Height = 16
+    Caption = 'Descontos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object GroupBox1: TGroupBox
     Left = 376
     Top = 0
     Width = 428
-    Height = 105
+    Height = 151
     Caption = 'Datas'
     TabOrder = 0
     object Label1: TLabel
@@ -84,7 +116,10 @@ object Form2: TForm2
     Top = 176
     Width = 1178
     Height = 145
+    FixedColor = clActiveCaption
+    GradientStartColor = clSkyBlue
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentColor = True
     ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -97,8 +132,9 @@ object Form2: TForm2
   object DBGridItens: TDBGrid
     Left = 8
     Top = 346
-    Width = 1178
+    Width = 737
     Height = 143
+    Color = clGradientInactiveCaption
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 2
@@ -113,6 +149,7 @@ object Form2: TForm2
     Top = 522
     Width = 568
     Height = 143
+    Color = clGradientInactiveCaption
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 3
@@ -123,12 +160,13 @@ object Form2: TForm2
     TitleFont.Style = []
   end
   object BtnConsultar: TButton
-    Left = 488
-    Top = 111
-    Width = 217
-    Height = 34
+    Left = 562
+    Top = 132
+    Width = 64
+    Height = 19
     Caption = '&Consultar'
     TabOrder = 4
+    Visible = False
     OnClick = BtnConsultarClick
   end
   object GroupBox2: TGroupBox
@@ -234,7 +272,7 @@ object Form2: TForm2
     object EditPorta: TEdit
       Left = 216
       Top = 29
-      Width = 89
+      Width = 106
       Height = 21
       TabOrder = 1
       Text = '3050'
@@ -292,14 +330,134 @@ object Form2: TForm2
         'ento ser'#227'o exibidos nos demais grids.'
     end
   end
+  object JvXPButtonConsultar: TJvXPButton
+    Left = 513
+    Top = 89
+    Width = 161
+    Height = 41
+    Caption = 'Consultar'
+    TabOrder = 10
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    OnClick = BtnConsultarClick
+  end
+  object JvXPButton1: TJvXPButton
+    Left = 970
+    Top = 157
+    Width = 105
+    Height = 18
+    Caption = 'Consultar Sefaz'
+    TabOrder = 11
+  end
+  object JvXPButton2: TJvXPButton
+    Left = 1081
+    Top = 157
+    Width = 105
+    Height = 18
+    Caption = 'Reenviar VF'
+    TabOrder = 12
+  end
+  object DBGrid1: TDBGrid
+    Left = 751
+    Top = 346
+    Width = 435
+    Height = 143
+    TabOrder = 13
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object GroupBox7: TGroupBox
+    Left = 810
+    Top = 0
+    Width = 376
+    Height = 151
+    Caption = 'WebClient'
+    TabOrder = 14
+    object Label13: TLabel
+      Left = 37
+      Top = 67
+      Width = 29
+      Height = 13
+      Caption = 'CNPJ:'
+    end
+    object Label14: TLabel
+      Left = 16
+      Top = 45
+      Width = 50
+      Height = 13
+      Caption = 'Cod. Loja:'
+    end
+    object Label15: TLabel
+      Left = 29
+      Top = 97
+      Width = 37
+      Height = 13
+      Caption = 'Link VF:'
+    end
+    object EditCodLoja: TEdit
+      Left = 72
+      Top = 37
+      Width = 121
+      Height = 21
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object EditCNPJ: TEdit
+      Left = 72
+      Top = 64
+      Width = 121
+      Height = 21
+      ReadOnly = True
+      TabOrder = 1
+    end
+    object EditLinkVF: TEdit
+      Left = 72
+      Top = 94
+      Width = 209
+      Height = 21
+      ReadOnly = True
+      TabOrder = 2
+    end
+    object BtnConfigWebClient: TJvXPButton
+      Left = 240
+      Top = 24
+      Width = 121
+      Caption = 'Configurar WebClient'
+      TabOrder = 3
+      OnClick = BtnConfigWebClientClick
+    end
+    object BtnAcessarVF: TButton
+      Left = 287
+      Top = 92
+      Width = 75
+      Height = 25
+      Caption = 'Acessar'
+      TabOrder = 4
+      OnClick = BtnAcessarVFClick
+    end
+  end
+  object BtnRestartWebClient: TJvXPButton
+    Left = 1050
+    Top = 51
+    Width = 121
+    Caption = 'Reiniciar WebClient'
+    TabOrder = 15
+  end
   object InterBaseUniProvider1: TInterBaseUniProvider
-    Left = 896
-    Top = 8
+    Left = 392
+    Top = 24
   end
   object UniConnection1: TUniConnection
     ProviderName = 'InterBase'
-    Left = 896
-    Top = 56
+    Left = 392
+    Top = 72
   end
   object UniQueryTransacao: TUniQuery
     Connection = UniConnection1
@@ -346,7 +504,12 @@ object Form2: TForm2
       end>
     Options = []
     OnFileOkClick = FileOpenDialog1FileOkClick
-    Left = 384
-    Top = 120
+    Left = 176
+    Top = 128
+  end
+  object UniQueryDadosLoja: TUniQuery
+    Connection = UniConnection1
+    Left = 842
+    Top = 128
   end
 end
