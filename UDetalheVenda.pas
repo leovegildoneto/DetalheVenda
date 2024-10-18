@@ -17,7 +17,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Vcl.Grids,
   Vcl.DBGrids, Data.DB, DBAccess, Uni, MemDS, UniProvider, InterBaseUniProvider,
   LblEffct, Vcl.ExtCtrls, JvExExtCtrls, JvExtComponent, JvFooter, JvExControls,
-  JvButton, JvTransparentButton, JvXPCore, JvXPButtons, ShellAPI,
+  JvButton, JvTransparentButton, JvXPCore, JvXPButtons, ShellAPI, WinSvc,
   System.IniFiles;
 
 type
@@ -109,7 +109,8 @@ implementation
 {$R *.dfm}
 
 procedure ManipularArquivoProperties(const NomeArquivo: string;
-  const CodLoja: string; const CnpjLoja: string; const UrlVf: string);
+  const CodLoja: string; const CnpjLoja: string; const UrlVf: string;
+  const ClientContainer: string);
 var
   Linhas: TStringList;
   I: Integer;
@@ -139,6 +140,8 @@ begin
           Valor := UrlVf; // Novo valor para webServerHost
         if Chave = 'syspdvwebclient.cnpjLoja' then
           Valor := CnpjLoja;
+        if Chave = 'client.container' then
+          Valor := ClientContainer;
 
         // Atualiza a linha no TStringList
         Linhas[I] := Chave + '=' + Valor;
@@ -163,6 +166,9 @@ var
   TextoOriginal, Delimitador: string;
   Partes: TArray<string>;
   I: Integer;
+  UrlInteira: string;
+  UrlSem443: string;
+  Container: string;
 begin
 
   // Dividindo a URL do VF para remover o https:// e o :443
@@ -171,12 +177,25 @@ begin
     Lista.Delimiter := '/';
     Lista.DelimitedText := EditLinkVF.Text;
     for I := 0 to Lista.Count - 1 do
-      //ShowMessage(Lista[2]);
+      UrlInteira := Lista[2];
   finally
   end;
+  Lista.Clear;
+
+  Lista.Delimiter := ':';
+  Lista.DelimitedText := UrlInteira;
+  for I := 0 to Lista.Count - 1 do
+    UrlSem443 := Lista[0];
+  Lista.Clear;
+
+  Lista.Delimiter := '.';
+  Lista.DelimitedText := UrlInteira;
+  for I := 0 to Lista.Count - 1 do
+    Container := Lista[0];
+  // ShowMessage(Container);
   ManipularArquivoProperties
     ('C:\Program Files (x86)\SysPDVWebClient\configuracoes.properties',
-    EditCodLoja.Text, EditCNPJ.Text, Lista[2]);
+    EditCodLoja.Text, EditCNPJ.Text, UrlSem443, Container);
 
   Lista.Free;
 end;

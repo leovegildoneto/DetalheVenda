@@ -351,6 +351,7 @@ object Form2: TForm2
     Width = 105
     Height = 18
     Caption = 'Consultar Sefaz'
+    Enabled = False
     TabOrder = 11
   end
   object JvXPButton2: TJvXPButton
@@ -448,6 +449,7 @@ object Form2: TForm2
     Top = 51
     Width = 121
     Caption = 'Reiniciar WebClient'
+    Enabled = False
     TabOrder = 15
   end
   object InterBaseUniProvider1: TInterBaseUniProvider
